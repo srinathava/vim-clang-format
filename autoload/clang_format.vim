@@ -260,13 +260,12 @@ function! clang_format#replace_ranges(ranges, ...) abort
     endif
 
     let winview = winsaveview()
-    let splitted = split(formatted, '\n', 1)
+    let splitted = split(formatted, '\n')
 
     silent! undojoin
     if line('$') > len(splitted)
         execute len(splitted) .',$delete' '_'
     endif
-    call setline(1, splitted)
     call winrestview(winview)
     call setpos('.', pos_save)
 endfunction
